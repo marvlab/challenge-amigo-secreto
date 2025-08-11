@@ -10,7 +10,7 @@
             // Obtener el valor del input
             const input = document.getElementById('nombreAmigo');
             const nombre = input.value.trim();
-            
+            document.getElementById('resultado').innerHTML='';
             // Validar que no esté vacío
             if (nombre === '') {
                 alert('Por favor ingresa un nombre');
@@ -19,14 +19,12 @@
             
             // Agregar al array
             listaAmigos.push(nombre);
-            
             // Actualizar la lista en el HTML
             actualizarLista();
-            
             // Limpiar el input
             input.value = '';
             
-            // Mostrar en consola (opcional)
+            // Mostrar valores de prueba en consola
             console.log('Amigos actuales:', listaAmigos);
         }
 
@@ -41,4 +39,27 @@
                 ul.appendChild(li);
             });
         }
+
+        function sortearAmigo() {
+             if (listaAmigos.length=== 0){
+                alert('Agregar por lo menos un amigo');
+                return;
+             }   
+
+            // Obtener un índice aleatorio
+            const indiceAleatorio = Math.floor(Math.random() * listaAmigos.length);
+            
+            // Obtener el nombre del amigo sorteado
+            const amigoSorteado = listaAmigos[indiceAleatorio];
+            
+            // Limpiar lista de nombres ingresados
+            document.getElementById('listaAmigos').innerHTML = '';
+            // Mostrar solo el resultado
+             document.getElementById('resultado').innerHTML=`<li>El amigo sorteado es: <strong>${amigoSorteado}</strong></li>`;
+            //Vaciamos el array para evitar alterar el sorteo
+            listaAmigos.length=0;
+            
+        }
+
+
 
